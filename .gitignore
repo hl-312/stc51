@@ -16,3 +16,8 @@ build/Release/STC51
 # eide template
 *.ept
 *.eide-template
+
+
+# ProjectGraph files
+graph.json.*
+!graph.json
