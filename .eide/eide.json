@@ -30,7 +30,9 @@
       "uploadConfigMap": {},
       "custom_dep": {
         "name": "default",
-        "incList": [],
+        "incList": [
+          "../../../../../../Keil_v5/C51/INC/STC"
+        ],
         "libList": [],
         "defineList": []
       },
