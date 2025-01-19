@@ -5,7 +5,10 @@
 /.eide.usr.ctx.json
 
 # project out
-/build
+/build/Release/.obj
+/build/Release/*
+build/Release/STC51
+!stc51.hex
 /bin
 /obj
 /out

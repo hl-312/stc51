@@ -24,7 +24,7 @@
       "uploader": "Custom",
       "uploadConfig": {
         "bin": "",
-        "commandLine": "python ./tools/stcflash.py -p ${port} \"${hexFile}\"",
+        "commandLine": "python ./tools/stcflash.py -p COM5 \"${hexFile}\"",
         "eraseChipCommand": ""
       },
       "uploadConfigMap": {},
