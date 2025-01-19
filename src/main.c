@@ -3,9 +3,6 @@
 #define DIGITALTUBESBIT(n)  P2 = P2 & ~0x1c | (n << 2)
 #define DIGITALTUBESSEGMENT P0
 
-#define DIGITALTUBESBIT(n)  P2 = P2 & ~0x1c | (n << 2)
-#define DIGITALTUBESSEGMENT P0
-
 typedef unsigned char uint8_t;
 typedef unsigned int uint16_t;
 typedef unsigned long uint32_t;
