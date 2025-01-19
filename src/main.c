@@ -1,6 +1,13 @@
 #include <STC89C5XRC.h>
 #include <INTRINS.H>
 
+// 流水灯方向
+#define DIRECTION RIGHT
+// flowspeed的分辨率为100ms
+#define FLOWSPEED 2
+// 流水灯持续时间以一个灯亮为单位，取值8流一遍
+#define DURATION 8 * 2
+
 typedef unsigned char uint8_t;
 typedef unsigned int uint16_t;
 typedef unsigned long uint32_t;
@@ -9,37 +16,53 @@ typedef signed char int8_t;
 typedef signed int int16_t;
 typedef signed long int32_t;
 
-void Delay500ms(void); //@11.0592MHz
+typedef enum {
+    RIGHT,
+    LEFT
+} Direction;
+
+// delay for num half seconds.
+void Delay100ms(void);
+// led lighting to flow to Direction in P2, fluence at num, duration of drt.
+void FlowLedP2(Direction dirt, uint8_t num, uint16_t drt);
 
 void main()
 {
-    uint8_t set = 0x01;
-    P2          = 0xff;
-    while (1) {
-        P2 = ~set;
-        /*
-        P2 = set ^ P2;  这种写法也可以，0^0=0,1^0=1,0^1=1,1^1=0,
-        P2默认关，值全1，则与掩码异或后，特定位相同被置0点亮，其余位不同同仍为1关闭，
-        而已被点亮的位与下一位掩码均为0，相同置1，关闭，效果与取反相同。
-        当然现在看来不如取反直接，容易理解。
-        */
-        set <<= 1;
-        if (set == 0) set = 0x01;
-        Delay500ms();
-    };
+    P2 = 0xff;
+    FlowLedP2(DIRECTION, FLOWSPEED, DURATION);
+    while (1);
 }
 
-void Delay500ms(void) //@11.0592MHz
+void Delay100ms(void) //@11.0592MHz
 {
-    unsigned char data i, j, k;
+    unsigned char data i, j;
 
-    _nop_();
-    i = 4;
-    j = 129;
-    k = 119;
+    i = 180;
+    j = 73;
     do {
-        do {
-            while (--k);
-        } while (--j);
+        while (--j);
     } while (--i);
+}
+
+void FlowLedP2(Direction dirt, uint8_t num, uint16_t drt)
+{
+    uint8_t tmp = num;
+    uint8_t set = 0x00;
+    for (; drt > 0; drt--) {
+        if (dirt == RIGHT) {
+            set <<= 1;
+            if (set == 0) set = 0x01;
+        } else if (dirt == LEFT) {
+            set >>= 1;
+            if (set == 0) set = 0x80;
+        }
+        P2 = 0xff ^ set;
+        while (tmp) {
+            Delay100ms();
+            tmp--;
+        }
+        tmp = num;
+    }
+    P2 = 0xff;
+    return;
 }
