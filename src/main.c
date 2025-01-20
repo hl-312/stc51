@@ -87,6 +87,7 @@ void displayOneDT(uint8_t bitSite)
             P0 = segmentCodeTable[setting[bitSite + 2]]; // 无小数点，直接赋值
     }
     Delay1ms();
+    P0 = 0x00;
     return;
 }
 
