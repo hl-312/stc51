@@ -74,6 +74,7 @@ void displayOneDT(uint8_t bitSite)
 {
     if (setting[0] & 0x01 << bitSite) // 检查位开关
     {
+        P0 = 0x00;                                              // 清除原由内容，避免切换位选时会显示一瞬间，造成拖影。
         P2 = P2 & ~0x1c | bitSite << 2;                         // 设置位选为该位，0001 1100b, 8+4=12=0xC
         if (setting[1] & 0x01 << bitSite)                       // 检查小数点开关
             P0 = segmentCodeTable[setting[bitSite + 2]] | 0x80; // 赋值显示内容，有小数点所以或一下0x80
