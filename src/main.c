@@ -45,17 +45,25 @@ uint8_t setting[] = {0xff, 0xfc, 0, 1, 2, 3, 4, 5, 6, 7};
 
 // 延时函数
 void Delay1ms(void);
+void displayCycle(void);
 // 单位显示函数。检查位开关，设置位选，检查小数点，设置内容，延时，返回
 void displayOneDT(uint8_t bitSite);
+//
 
 void main()
 {
-    uint8_t i;
     while (1) {
-        for (i = 0; i < 8; i++) {
-            displayOneDT(i);
-        }
+        displayCycle();
     }
+}
+
+void displayCycle(void)
+{
+    uint8_t i;
+    for (i = 0; i < 8; i++) {
+        displayOneDT(i);
+    }
+    return;
 }
 
 void Delay1ms(void) //@11.0592MHz
@@ -82,4 +90,5 @@ void displayOneDT(uint8_t bitSite)
             P0 = segmentCodeTable[setting[bitSite + 2]]; // 无小数点，直接赋值
     }
     Delay1ms();
+    return;
 }
