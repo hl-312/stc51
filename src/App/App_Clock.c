@@ -2,14 +2,15 @@
 #include "Int_DigitalTube.h"
 #include <STC89C5xRC.H>
 
+/// @brief 显存指针
 static uint8_t *s_p_buffer;
 
 void App_Clock_DisplayByDigitalTubes(uint16_t time, int8_t *initTime)
 {
     uint8_t i, j;
     // 配置表初始化
-    setting[0] = 0x7e;
-    setting[1] = 0x28;
+    Int_DigitalTube_SetSetting(0, 0x7e); // 0x7e=0111 1110b
+    Int_DigitalTube_SetSetting(1, 0x28); // 0x28=0010 1000b
     // 获取显存地址
     s_p_buffer = Int_DigitalTube_GetBufferAddress();
     // 时间初始化

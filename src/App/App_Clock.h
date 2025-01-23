@@ -9,10 +9,7 @@
 void App_Clock_DisplayByDigitalTubes(uint16_t time, int8_t *initTime);
 
 /// @brief 维护时间数据合法性
-/// @param size 有几个数据，如只有秒？只有秒和分？秒分时都有？
-/// @param sec 秒的数据地址
-/// @param min 分的数据地址
-/// @param h 时的数据地址
+/// @param time 显存中的时间数据地址
 void App_Clock_KeepValid(uint8_t *time);
 
 #endif
