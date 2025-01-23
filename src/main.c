@@ -1,14 +1,4 @@
-#include <STC89C5XRC.h>
-#include <INTRINS.H>
-
-typedef unsigned char uint8_t;
-typedef unsigned int uint16_t;
-typedef unsigned long uint32_t;
-
-typedef signed char int8_t;
-typedef signed int int16_t;
-typedef signed long int32_t;
-
+#include "App_ClockByDigitalTubes.h"
 /*
 数码管显示功能分析
 已经实现：任意数码管点亮并显示指定内容，但还未重构成函数。
@@ -35,6 +25,15 @@ typedef signed long int32_t;
 开始实现。
 */
 
+/*
+typedef unsigned char uint8_t;
+typedef unsigned int uint16_t;
+typedef unsigned long uint32_t;
+
+typedef signed char int8_t;
+typedef signed int int16_t;
+typedef signed long int32_t;
+
 // 无小数点段码表，小数点的段码是最高位P07，给 1 点亮。
 uint8_t segmentCodeTable[] = {0x3F, 0x06, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x07, 0x7F, 0x6F};
 // 数码管配置表，[0]: 开关信息; [1]: 小数点开关信息; [2-11]: 0-7号数码管显示内容。
@@ -51,6 +50,7 @@ void display(uint8_t time);
 // 时钟函数，格式：hh.mm.ss，左右各空一位，最小时间单位1s。
 // 对应配置信息为：[0]=0111 1110=0x7e, [1]=0010 1000=0x28;
 void display_Timer(uint16_t time, int8_t *initTime);
+*/
 
 void main()
 {
@@ -60,6 +60,7 @@ void main()
     }
 }
 
+/*
 void Delay1ms(void) //@11.0592MHz
 {
     uint8_t data i, j;
@@ -158,3 +159,4 @@ void display_Timer(uint16_t time, int8_t *initTime)
     }
     P0 = 0x00; // 用完端口顺手清理是好习惯
 }
+*/
