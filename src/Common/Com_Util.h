@@ -13,7 +13,8 @@ typedef signed char int8_t;
 typedef signed int int16_t;
 typedef signed long int32_t;
 
-// ÑÓÊ±º¯Êý
 void Com_Util_Delay1ms(void);
+void Com_Util_Delay500ms(void);
+void Com_Util_Delay998ms(void);
 
 #endif

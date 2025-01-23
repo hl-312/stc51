@@ -9,6 +9,10 @@
 // 数码管配置表，[0]: 开关信息; [1]: 小数点开关信息; [2-11]: 0-7号数码管显示内容。
 extern uint8_t setting[];
 
+/// @brief 初始化数码管，位选0最右端，显示无小数点0
+/// @param
+void Int_DigitalTube_Init(void);
+
 /// @brief 数码管显示单个数字
 /// @param bitSite
 // 单位显示函数。检查位开关，设置位选，检查小数点，设置内容，延时，返回
@@ -22,5 +26,7 @@ void Int_DigitalTube_DisplayCycle(void);
 /// @brief 显示函数，显示时间单位 1s，考虑到函数调用的开销，可以设置的略微小于1s。最大256s。
 /// @param time
 void Int_DigitalTube_Display(uint8_t time);
+
+uint8_t *Int_DigitalTube_GetBufferAddress(void);
 
 #endif

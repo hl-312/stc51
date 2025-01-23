@@ -1,3 +1,4 @@
+#include "Int_DigitalTube.h"
 #include "App_Clock.h"
 /*
 数码管显示功能分析
@@ -28,6 +29,7 @@
 void main()
 {
     int8_t *init_time = "11.59.56";
+    Int_DigitalTube_Init();
     App_Clock_DisplayByDigitalTubes(60 * 70, init_time);
     while (1) {
     }
