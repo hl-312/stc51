@@ -26,15 +26,19 @@
 开始实现。
 */
 
-// 尝试使用函数指针调用函数
-void (*ClockDisplayDT)(uint16_t time, int8_t *initTime);
+// 测试结构体模拟对象和方法
+typedef struct DigitalTubes_Struct {
+    int8_t *time;
+    void (*ClockDisplayDT)(uint16_t time, int8_t *initTime);
+} DigitalTubes_Struct;
 
 void main()
 {
-    int8_t *init_time = "11.59.56";
-    ClockDisplayDT    = App_Clock_DisplayByDigitalTubes;
+    DigitalTubes_Struct dt;
+    dt.time           = "19.59.55";
+    dt.ClockDisplayDT = App_Clock_DisplayByDigitalTubes;
     Int_DigitalTube_Init();
-    ClockDisplayDT(60 * 70, init_time);
+    dt.ClockDisplayDT(60 * 70, dt.time);
     while (1) {
     }
 }
