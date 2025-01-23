@@ -1,4 +1,4 @@
-#include "App_ClockByDigitalTubes.h"
+#include "App_Clock.h"
 /*
 数码管显示功能分析
 已经实现：任意数码管点亮并显示指定内容，但还未重构成函数。
@@ -19,7 +19,7 @@
     显然，我需要位测试函数（var&0x01<<i），移位函数，位赋值函数（单个位可以直接置位或复位，多个位如101b，
     就建议先复位&000b再置位|101b）这些函数比较简单，宏函数即可。
 思路：
-1. 将已经实现的功能重构为函数：void displayOneDT(bitSite)，函数内部固定显示时间为 1ms（延时函数），显示信息查setting表
+1. 将已经实现的功能重构为函数：void Int_DigitalTube_DisplayOne(bitSite)，函数内部固定显示时间为 1ms（延时函数），显示信息查setting表
 2. 显示周期函数，循环调用八次单位显示函数
 3. 显示函数，可以选择总的显示时长
 开始实现。
@@ -28,7 +28,7 @@
 void main()
 {
     int8_t *init_time = "11.59.56";
-    display_Timer(60 * 70, init_time);
+    App_Clock_DisplayByDigitalTubes(60 * 70, init_time);
     while (1) {
     }
 }

@@ -1,8 +1,8 @@
-#include "App_ClockByDigitalTubes.h"
+#include "App_Clock.h"
 #include "Int_DigitalTube.h"
 #include <STC89C5xRC.H>
 
-void display_Timer(uint16_t time, int8_t *initTime)
+void App_Clock_DisplayByDigitalTubes(uint16_t time, int8_t *initTime)
 {
     uint8_t i, j;
     // 配置表初始化
@@ -18,7 +18,7 @@ void display_Timer(uint16_t time, int8_t *initTime)
         uint8_t i;
         for (i = 0; i < 123; i++) // 一个周期约8ms多，1000ms/8=125，取小一点123
         {
-            displayCycle();
+            Int_DigitalTube_DisplayCycle();
         }
         setting[3]++;
         if (setting[3] > 9) {
@@ -49,5 +49,5 @@ void display_Timer(uint16_t time, int8_t *initTime)
             }
         }
     }
-    P0 = 0x00; // 用完端口顺手清理是好习惯
+    SEM = 0x00; // 用完端口顺手清理是好习惯
 }
