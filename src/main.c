@@ -26,11 +26,15 @@
 开始实现。
 */
 
+// 尝试使用函数指针调用函数
+void (*ClockDisplayDT)(uint16_t time, int8_t *initTime);
+
 void main()
 {
     int8_t *init_time = "11.59.56";
+    ClockDisplayDT    = App_Clock_DisplayByDigitalTubes;
     Int_DigitalTube_Init();
-    App_Clock_DisplayByDigitalTubes(60 * 70, init_time);
+    ClockDisplayDT(60 * 70, init_time);
     while (1) {
     }
 }
