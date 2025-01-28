@@ -1,26 +1,20 @@
 #include "App_Clock.h"
-#include "Int_DigitalTube.h"
 #include <STC89C5xRC.H>
 
-/// @brief 显存指针
-static uint8_t *s_p_buffer;
-
-void App_Clock_DisplayByDigitalTubes(uint16_t time, int8_t *initTime)
+void App_Clock_DisplayByDigitalTubes(struct App_Clock *this, uint16_t time)
 {
     uint8_t i, j;
     // 配置表初始化
-    Int_DigitalTube_SetSetting(0, 0x7e); // 0x7e=0111 1110b
-    Int_DigitalTube_SetSetting(1, 0x28); // 0x28=0010 1000b
-    // 获取显存地址
-    s_p_buffer = Int_DigitalTube_GetBufferAddress();
+    this->dt.setting[0] = 0x7e; // 0x7e=0111 1110b
+    this->dt.setting[1] = 0x28; // 0x28=0010 1000b
     // 时间初始化
     for (i = 0, j = 0; i < 8; i++) {
-        if (initTime[i] >= 48 && initTime[i] <= 57) s_p_buffer[6 - j++] = initTime[i] - 48; // 空一位所以从6开始
+        if (this->initTime[i] >= 48 && this->initTime[i] <= 57) this->dt.buffer[6 - j++] = this->initTime[i] - 48; // 空一位所以从6开始
     }
-    for (; 0 < time; time--) {
-        Int_DigitalTube_Display(1);
-        s_p_buffer[1]++;
-        App_Clock_KeepValid(&s_p_buffer[1]);
+    for (; 0 < time; time=time-1) {
+        this->dt.Display(&this->dt, 1);
+        this->dt.buffer[1]++;
+        App_Clock_KeepValid(&this->dt.buffer[1]);
         SEM = 0x00; // 用完端口顺手清理是好习惯
     }
     return;

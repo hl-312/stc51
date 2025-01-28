@@ -21,7 +21,8 @@
             "*.cxx": "cpp",
             "*.cc": "cpp",
             "INTRINS.H": "cpp",
-            "STC89C5xRC.H": "cpp"
+            "STC89C5xRC.H": "cpp",
+            "STDIO.H": "cpp"
         },
         "C_Cpp.default.configurationProvider": "cl.eide",
         "[yaml]": {

@@ -1,5 +1,6 @@
 #include "Int_DigitalTube.h"
 #include "App_Clock.h"
+#include <STC89C5xRC.H>
 /*
 数码管显示功能分析
 已经实现：任意数码管点亮并显示指定内容，但还未重构成函数。
@@ -26,19 +27,13 @@
 开始实现。
 */
 
-// 测试结构体模拟对象和方法
-typedef struct DigitalTubes_Struct {
-    int8_t *time;
-    void (*ClockDisplayDT)(uint16_t time, int8_t *initTime);
-} DigitalTubes_Struct;
-
 void main()
 {
-    DigitalTubes_Struct dt;
-    dt.time           = "19.59.55";
-    dt.ClockDisplayDT = App_Clock_DisplayByDigitalTubes;
-    Int_DigitalTube_Init();
-    dt.ClockDisplayDT(60 * 70, dt.time);
+    App_Clock ac;
+    Int_DigitalTubes_Init(&ac.dt);
+    ac.Display  = App_Clock_DisplayByDigitalTubes;
+    ac.initTime = "23.59.58";
+    ac.Display(&ac, 5);
     while (1) {
     }
 }
