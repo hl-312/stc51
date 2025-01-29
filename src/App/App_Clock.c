@@ -1,7 +1,7 @@
 #include "App_Clock.h"
 #include <STC89C5xRC.H>
 
-void App_Clock_DisplayByDigitalTubes(struct App_Clock *this, uint16_t time)
+void App_Clock_DisplayByDigitalTubes(struct App_Clock *this, uint8_t time)
 {
     uint8_t i, j;
     // ≈‰÷√±Ì≥ı ºªØ
