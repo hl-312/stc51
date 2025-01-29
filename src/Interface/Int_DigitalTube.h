@@ -13,12 +13,12 @@ typedef enum Int_DigitalTubes_Type {
 
 typedef struct Int_DigitalTubes_Struct {
     Int_DigitalTubes_Type type;
+    /// @brief 无小数点段码表，小数点的段码是最高位P07，给1点亮。
+    uint8_t *segmentCodeTable;
     /// @brief 数码管配置表，[0]: 开关信息; [1]: 小数点开关信息;
     uint8_t setting[2];
     /// @brief 显存：0-7号数码管显示内容。
     uint8_t buffer[8];
-    /// @brief 无小数点段码表，小数点的段码是最高位P07，给1点亮。
-    uint8_t segmentCodeTable[10];
     void (*Init)(struct Int_DigitalTubes_Struct *this);
     void (*DisplayOne)(struct Int_DigitalTubes_Struct *this, uint8_t site);
     void (*DisplayCycle)(struct Int_DigitalTubes_Struct *this);

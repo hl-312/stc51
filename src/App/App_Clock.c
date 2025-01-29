@@ -16,8 +16,6 @@ void App_Clock_DisplayByDigitalTubes(struct App_Clock *this, uint8_t time)
         this->dt.Display(&this->dt, 1);
         this->dt.buffer[1]++;
         App_Clock_KeepValid(&this->dt.buffer[1]);
-        this->dt.Display(&this->dt, 1);
-        SEM = 0x00; // 用完端口顺手清理是好习惯
     }
     return;
 }
