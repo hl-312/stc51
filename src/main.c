@@ -27,16 +27,13 @@
 开始实现。
 */
 
-// 尝试用递归验证一下是不是函数调用栈溢出的问题
-uint16_t recur(uint16_t a) reentrant
-{
-    if (a == 1) {
-        return 1;
-    }
-    return a + recur(a - 1);
-}
-
 void main()
 {
-    recur(50000);
+    App_Clock ac;
+    Int_DigitalTubes_Init(&ac.dt);
+    ac.Display  = App_Clock_DisplayByDigitalTubes;
+    ac.initTime = "23.59.58";
+    ac.Display(&ac, 5);
+    while (1) {
+    }
 }

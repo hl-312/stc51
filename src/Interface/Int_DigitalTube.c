@@ -58,12 +58,13 @@ void Int_DigitalTubes_DisplayCycle(struct Int_DigitalTubes_Struct *this)
 
 void Int_DigitalTubes_Display(struct Int_DigitalTubes_Struct *this, uint8_t time)
 {
+    uint8_t i;
     for (; 0 < time; time--) {
-        uint8_t i;
-        for (i = 0; i < 123; i++) // 一个周期约8ms多，1000ms/8=125，取小一点123
+        for (i = 0; i < 100; i++) // 一个周期约8ms多，1000ms/8=125，取小一点123
         {
             Int_DigitalTubes_DisplayCycle(this);
         }
     }
     SEM = 0x00; // 用完端口顺手清理是好习惯
+    return;
 }

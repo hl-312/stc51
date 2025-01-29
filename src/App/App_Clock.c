@@ -12,10 +12,11 @@ void App_Clock_DisplayByDigitalTubes(struct App_Clock *this, uint16_t time)
         if (this->initTime[i] >= 48 && this->initTime[i] <= 57)
             this->dt.buffer[6 - j++] = this->initTime[i] - 48; // 空一位所以从6开始
     }
-    for (; 0 < time; time = time - 1) {
+    for (; 0 < time; time--) {
         this->dt.Display(&this->dt, 1);
         this->dt.buffer[1]++;
         App_Clock_KeepValid(&this->dt.buffer[1]);
+        this->dt.Display(&this->dt, 1);
         SEM = 0x00; // 用完端口顺手清理是好习惯
     }
     return;
@@ -28,15 +29,15 @@ void App_Clock_KeepValid(uint8_t *time)
     minute = time[3] * 10 + time[2];
     hour   = time[5] * 10 + time[4];
     if (second > 59) {
-        second = 0;
+        second -= 60;
         minute++;
     }
     if (minute > 59) {
-        minute = 0;
+        minute -= 60;
         hour++;
     }
     if (hour > 23) {
-        hour = 0;
+        hour -= 24;
     }
     time[0] = second % 10;
     time[1] = second / 10;
