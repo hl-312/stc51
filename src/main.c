@@ -28,7 +28,7 @@
 */
 
 // 尝试用递归验证一下是不是函数调用栈溢出的问题
-uint16_t recur(uint16_t a)
+uint16_t recur(uint16_t a) reentrant
 {
     if (a == 1) {
         return 1;

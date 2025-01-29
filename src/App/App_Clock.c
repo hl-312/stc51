@@ -9,9 +9,10 @@ void App_Clock_DisplayByDigitalTubes(struct App_Clock *this, uint16_t time)
     this->dt.setting[1] = 0x28; // 0x28=0010 1000b
     // 时间初始化
     for (i = 0, j = 0; i < 8; i++) {
-        if (this->initTime[i] >= 48 && this->initTime[i] <= 57) this->dt.buffer[6 - j++] = this->initTime[i] - 48; // 空一位所以从6开始
+        if (this->initTime[i] >= 48 && this->initTime[i] <= 57)
+            this->dt.buffer[6 - j++] = this->initTime[i] - 48; // 空一位所以从6开始
     }
-    for (; 0 < time; time=time-1) {
+    for (; 0 < time; time = time - 1) {
         this->dt.Display(&this->dt, 1);
         this->dt.buffer[1]++;
         App_Clock_KeepValid(&this->dt.buffer[1]);
